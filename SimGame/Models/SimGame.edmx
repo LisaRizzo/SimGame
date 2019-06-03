@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SimGameModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="varchar" MaxLength="50" />
+          <Property Name="Day" Type="int" />
+          <Property Name="Actions" Type="int" />
+          <Property Name="Villagers" Type="int" />
+          <Property Name="Houses" Type="int" />
+          <Property Name="Wells" Type="int" />
+          <Property Name="Farm" Type="int" />
+          <Property Name="Food" Type="int" />
+          <Property Name="Water" Type="int" />
+          <Property Name="Wood" Type="int" />
+          <Property Name="Stone" Type="int" />
+          <Property Name="PlayerId" Type="int" />
+        </EntityType>
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="20" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
+          <Property Name="password" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK__Cities__PlayerId__398D8EEE">
+          <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
+          <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Players">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="PlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SimGameModelStoreContainer">
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cities__PlayerId__398D8EEE" Association="Self.FK__Cities__PlayerId__398D8EEE">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SimGameModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Day" Type="Int32" />
+          <Property Name="Actions" Type="Int32" />
+          <Property Name="Villagers" Type="Int32" />
+          <Property Name="Houses" Type="Int32" />
+          <Property Name="Wells" Type="Int32" />
+          <Property Name="Farm" Type="Int32" />
+          <Property Name="Food" Type="Int32" />
+          <Property Name="Water" Type="Int32" />
+          <Property Name="Wood" Type="Int32" />
+          <Property Name="Stone" Type="Int32" />
+          <Property Name="PlayerId" Type="Int32" />
+          <NavigationProperty Name="Player" Relationship="Self.FK__Cities__PlayerId__398D8EEE" FromRole="Cities" ToRole="Players" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK__Cities__PlayerId__398D8EEE" FromRole="Players" ToRole="Cities" />
+        </EntityType>
+        <Association Name="FK__Cities__PlayerId__398D8EEE">
+          <End Role="Players" Type="Self.Player" Multiplicity="0..1" />
+          <End Role="Cities" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Players">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="PlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SimGameEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Players" EntityType="Self.Player" />
+          <AssociationSet Name="FK__Cities__PlayerId__398D8EEE" Association="Self.FK__Cities__PlayerId__398D8EEE">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SimGameModelStoreContainer" CdmEntityContainer="SimGameEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="SimGameModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Actions" ColumnName="Actions" />
+                <ScalarProperty Name="Villagers" ColumnName="Villagers" />
+                <ScalarProperty Name="Houses" ColumnName="Houses" />
+                <ScalarProperty Name="Wells" ColumnName="Wells" />
+                <ScalarProperty Name="Farm" ColumnName="Farm" />
+                <ScalarProperty Name="Food" ColumnName="Food" />
+                <ScalarProperty Name="Water" ColumnName="Water" />
+                <ScalarProperty Name="Wood" ColumnName="Wood" />
+                <ScalarProperty Name="Stone" ColumnName="Stone" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="SimGameModel.Player">
+              <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

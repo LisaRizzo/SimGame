@@ -1,0 +1,30 @@
+﻿@model SimGame.Models.Player
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+    <h2>
+        Welcome to The Sim Game!
+    </h2>
+    <h3>Game Rules:</h3>
+    <p>
+        The goal is to keep your population alive and get to population of 5.
+        You start at day 1 with 1 house, 1 villager, 6 food, and 6 water.
+        You get 1 action per day per villager. You may build a house, build a well, gather food, gather water, gather wood, or explore!
+        Each villager consumes 1 food and 1 water per day.
+    </p>
+
+    <div>
+        <h3> Are you ready to play? </h3>
+        @if (Session["UserID"] != null)
+        {
+            <div class="yes"> <a href="@Url.Action("NewGame", "Home")"> NEW GAME </a> </div>
+            <div class="yes"> <a href="@Url.Action("Game", "Home")"> LOAD GAME </a> </div>
+        }
+        else
+        {
+            <div class="yes"> <a href="@Url.Action("Register", "Account")"> REGISTER </a> </div>
+            <div class="yes"> <a href="@Url.Action("Login", "Account")"> LOGIN </a> </div>
+        }
+    </div>

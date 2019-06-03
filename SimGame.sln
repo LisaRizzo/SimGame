@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimGame", "SimGame\SimGame.csproj", "{42BE9A70-74D5-4179-8E2C-DA18CF56C947}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42BE9A70-74D5-4179-8E2C-DA18CF56C947}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42BE9A70-74D5-4179-8E2C-DA18CF56C947}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42BE9A70-74D5-4179-8E2C-DA18CF56C947}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42BE9A70-74D5-4179-8E2C-DA18CF56C947}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A38DFD4-98FF-4F0C-B1C5-A9A6448C489A}
+	EndGlobalSection
+EndGlobal
