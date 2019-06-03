@@ -206,13 +206,13 @@ namespace SimGame.Controllers
                 {
                     int amount = rnd.Next(3, 7);
                     c.Stone += amount;
-                    Session["Message"] = $"Your villager brought back {amount} stones";
+                    Session["Message"] = $"Your villager brought back {amount} stones.";
                 }
                 else if (roll == 2)
                 {
                     int amount = rnd.Next(5, 10);
                     c.Food += amount;
-                    Session["Message"] = $"Your villager brought back {amount} food";
+                    Session["Message"] = $"Your villager brought back {amount} food.";
                 }
                 else if (roll == 3)
                 {
@@ -235,7 +235,7 @@ namespace SimGame.Controllers
                 {
                     if (c.Actions > 0)
                     {
-                        Session["Message"] = $"Your villager got hurt while exploring! You lose an action.";
+                        Session["Message"] = $"Your villager got hurt! Lose an action.";
                         c.Actions--;
                     }
                 }
@@ -248,11 +248,11 @@ namespace SimGame.Controllers
 
                 else if (roll == 8)
                 {
-                    Session["Message"] = $"Your villager came back empty";
+                    Session["Message"] = $"Your villager came back empty.";
                 }
                 else if (roll == 9)
                 {
-                    Session["Message"] = $"Your villager found a friend";
+                    Session["Message"] = $"Your villager found a friend!";
                     c.Houses++;
                     c.Villagers++;
                 }
